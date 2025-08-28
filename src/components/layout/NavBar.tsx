@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HamburgerIcon } from "./HamburgerIcon";
-import { playfairDisplay } from "@/app/layout";
+import { plusJakartaDisplay } from "@/app/layout";
 import { UserIcon } from "./UserIcon";
 
 interface NavBarProps {
@@ -15,7 +15,7 @@ export const NavBar = ({ links }: NavBarProps) => {
         <div className="flex items-center gap-4">
           <HamburgerIcon />
           <h1
-            className={`md:font-bold md:text-2xl text-logo tracking-widest ${playfairDisplay.className}`}
+            className={`md:font-bold md:text-2xl text-logo tracking-widest`}
           >
             LUMERÉ
           </h1>
@@ -27,7 +27,7 @@ export const NavBar = ({ links }: NavBarProps) => {
             <Link
               key={link.name}
               href={link.href}
-              className="hover:bg-[var(--hover-color)] p-2 rounded text-white"
+              className={`hover:bg-[var(--hover-color)] p-2 rounded text-white ${plusJakartaDisplay.className}`}
             >
               {link.name}
             </Link>

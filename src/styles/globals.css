@@ -1,15 +1,25 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-logo: #AD974F;
-  --hover-color: #8E793E;
+  --color-logo: #A58958;
+  --hover-color: #A58958;
 };
 
 body {
-  background-image: url('/images/background-new.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh;
+  background-color: #f9f6f1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
 }

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans, Lora } from "next/font/google";
 import "../styles/globals.css";
 import { NavBar } from "@/components/layout/NavBar";
 
-const plusJakartaDisplay = Plus_Jakarta_Sans({
+export const plusJakartaDisplay = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
+  style: ["normal", "italic"],
 });
 
-export const playfairDisplay = Playfair_Display({
-  variable: "--font-plus-jakarta-sans",
+export const loraDisplay = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
 });
 
@@ -32,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaDisplay.className}`}>
+      <body className={`${loraDisplay.className} text-[#3f3f3f]`}>
         <NavBar links={navBarLinks} />
         {children}
       </body>
