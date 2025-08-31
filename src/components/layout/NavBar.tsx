@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import { HamburgerIcon } from "./HamburgerIcon";
@@ -20,11 +20,13 @@ export const NavBar = ({ links }: NavBarProps) => {
         {/* Left: Logo + Hamburger */}
         <div className="flex items-center gap-4">
           <HamburgerIcon />
-          <h1
-            className={`md:font-bold md:text-2xl text-logo tracking-widest`}
-          >
-            LUMERÉ
-          </h1>
+          <Link href="/">
+            <h1
+              className={`md:font-bold md:text-2xl text-logo tracking-widest`}
+            >
+              LUMERÉ
+            </h1>
+          </Link>
         </div>
 
         {/* Center: Navigation Links */}
@@ -33,7 +35,9 @@ export const NavBar = ({ links }: NavBarProps) => {
             <Link
               key={link.name}
               href={link.href}
-              className={`hover:bg-[var(--hover-color)] p-2 rounded ${pathname === '/' ? 'text-white' : 'text-[#3f3f3f]'} ${plusJakartaDisplay.className}`}
+              className={`hover:bg-[var(--hover-color)] hover:text-white p-2 rounded ${
+                pathname === "/" ? "text-white" : "text-[#3f3f3f]"
+              } ${plusJakartaDisplay.className}`}
             >
               {link.name}
             </Link>

@@ -3,6 +3,7 @@ import { ScrollingStrip } from "@/components/layout/ScrollingStrip";
 import { LandingPageCards } from "@/components/layout/LandingPageCards";
 import { BlurText } from "@/components/layout/BlurText";
 import { plusJakartaDisplay } from "@/styles/fonts";
+import { FadeInSection } from "@/components/shared/FadeInSection";
 
 const spotlightItems = [
   {
@@ -56,51 +57,58 @@ export default function Home() {
       <div>
         <ScrollingStrip />
       </div>
-      <div>
-        <LandingPageCards />
-      </div>
 
-      <h2 className="text-4xl font-semibold mt-16 text-center col-span-1 md:col-span-3">
-        Top Picks of the Month
-      </h2>
+      <FadeInSection>
+        <div>
+          <LandingPageCards />
+        </div>
+      </FadeInSection>
+
+      <FadeInSection>
+        <h2 className="text-4xl font-semibold mt-16 text-center col-span-1 md:col-span-3">
+          Top Picks of the Month
+        </h2>
+      </FadeInSection>
 
       {spotlightItems.map((item, index) => (
-        <div
-          key={index}
-          className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto my-8 items-center"
-        >
-          {/* Image */}
+        <FadeInSection key={index}>
           <div
-            className={
-              index % 2 === 0
-                ? "p-4 flex justify-center order-1 md:order-1"
-                : "p-4 flex justify-center order-1 md:order-2"
-            }
+            key={index}
+            className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto my-8 items-center"
           >
-            <Image
-              src={item.imageUrl}
-              alt={item.title}
-              width={400}
-              height={300}
-              className="rounded-xl"
-            />
-          </div>
-          {/* Text */}
-          <div
-            className={
-              index % 2 === 0
-                ? "p-8 order-2 md:order-2"
-                : "p-8 order-2 md:order-1"
-            }
-          >
-            <h3 className="text-3xl font-medium mb-4">{item.title}</h3>
-            <p
-              className={`text-xl font-normal ${plusJakartaDisplay.className}`}
+            {/* Image */}
+            <div
+              className={
+                index % 2 === 0
+                  ? "p-4 flex justify-center order-1 md:order-1"
+                  : "p-4 flex justify-center order-1 md:order-2"
+              }
             >
-              {item.description}
-            </p>
+              <Image
+                src={item.imageUrl}
+                alt={item.title}
+                width={400}
+                height={300}
+                className="rounded-xl"
+              />
+            </div>
+            {/* Text */}
+            <div
+              className={
+                index % 2 === 0
+                  ? "p-8 order-2 md:order-2"
+                  : "p-8 order-2 md:order-1"
+              }
+            >
+              <h3 className="text-3xl font-medium mb-4">{item.title}</h3>
+              <p
+                className={`text-xl font-normal ${plusJakartaDisplay.className}`}
+              >
+                {item.description}
+              </p>
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       ))}
     </>
   );
