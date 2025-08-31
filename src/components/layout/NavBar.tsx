@@ -1,13 +1,19 @@
+'use client';
+
 import Link from "next/link";
 import { HamburgerIcon } from "./HamburgerIcon";
-import { plusJakartaDisplay } from "@/app/layout";
 import { UserIcon } from "./UserIcon";
+import { plusJakartaDisplay } from "@/styles/fonts";
+import { usePathname } from "next/navigation";
 
 interface NavBarProps {
   links: { name: string; href: string }[];
 }
 
 export const NavBar = ({ links }: NavBarProps) => {
+  const pathname = usePathname();
+  console.log("Current pathname:", pathname);
+
   return (
     <nav className="bg-transparent px-4 py-2 absolute top-0 w-full z-20">
       <div className="flex items-center justify-between w-full relative">
@@ -27,7 +33,7 @@ export const NavBar = ({ links }: NavBarProps) => {
             <Link
               key={link.name}
               href={link.href}
-              className={`hover:bg-[var(--hover-color)] p-2 rounded text-white ${plusJakartaDisplay.className}`}
+              className={`hover:bg-[var(--hover-color)] p-2 rounded ${pathname === '/' ? 'text-white' : 'text-[#3f3f3f]'} ${plusJakartaDisplay.className}`}
             >
               {link.name}
             </Link>

@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans, Lora } from "next/font/google";
 import "../styles/globals.css";
 import { NavBar } from "@/components/layout/NavBar";
-
-export const plusJakartaDisplay = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta-sans",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-});
-
-export const loraDisplay = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-});
+import { loraDisplay } from "@/styles/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -1,4 +1,4 @@
-import { plusJakartaDisplay } from "@/app/layout";
+import { plusJakartaDisplay } from "@/styles/fonts";
 
 export const ScrollingStrip = () => {
   const items = [

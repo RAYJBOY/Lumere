@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { plusJakartaDisplay } from "./layout";
 import { ScrollingStrip } from "@/components/layout/ScrollingStrip";
 import { LandingPageCards } from "@/components/layout/LandingPageCards";
 import { BlurText } from "@/components/layout/BlurText";
+import { plusJakartaDisplay } from "@/styles/fonts";
 
 const spotlightItems = [
   {
