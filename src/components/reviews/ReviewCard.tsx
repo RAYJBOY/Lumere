@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 interface ReviewCardProps {
   reviewer: string;
@@ -19,12 +20,14 @@ export const ReviewCard = ({
     <div className="bg-white shadow-md rounded-lg p-6 max-w-md w-full mx-auto hover:shadow-lg transition-shadow">
       <div className="flex items-center mb-4">
         {/* Profile Image or Default Initial */}
-        <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
+        <div className="relative w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
           {profileImage ? (
-            <img
+            <Image
               src={profileImage}
               alt={reviewer}
-              className="w-full h-full rounded-full object-cover"
+              fill
+              className="object-cover"
+              sizes="48px"
             />
           ) : (
             <span className="text-xl font-semibold text-gray-600">

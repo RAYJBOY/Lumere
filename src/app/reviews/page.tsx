@@ -20,28 +20,28 @@ export default function ReviewsPage() {
           rating={4}
           date="2 weeks ago"
           review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="images/avatar.png"
+          profileImage="/images/avatar.png"
         />
         <ReviewCard
           reviewer="John Smith"
           rating={4}
           date="2 weeks ago"
           review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="images/avatar.png"
+          profileImage="/images/avatar.png"
         />
         <ReviewCard
           reviewer="John Smith"
           rating={4}
           date="2 weeks ago"
           review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="images/avatar.png"
+          profileImage="/images/avatar.png"
         />
         <ReviewCard
           reviewer="John Smith"
           rating={4}
           date="2 weeks ago"
           review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="images/avatar.png"
+          profileImage="/images/avatar.png"
         />
       </div>
     </>
