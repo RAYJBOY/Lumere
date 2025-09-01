@@ -15,7 +15,7 @@ export default function ReviewsPage() {
         </p>
       </div>
       <FadeInSection>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center mb-20 px-4">
           {/* Example reviews */}
           <ReviewCard
             reviewer="John Smith"
