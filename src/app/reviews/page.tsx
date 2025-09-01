@@ -1,4 +1,5 @@
 import { ReviewCard } from "@/components/reviews/ReviewCard";
+import { FadeInSection } from "@/components/shared/FadeInSection";
 
 export default function ReviewsPage() {
   return (
@@ -13,37 +14,39 @@ export default function ReviewsPage() {
           possible.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center mb-20">
-        {/* Example reviews */}
-        <ReviewCard
-          reviewer="John Smith"
-          rating={4}
-          date="2 weeks ago"
-          review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="/images/avatar.png"
-        />
-        <ReviewCard
-          reviewer="John Smith"
-          rating={4}
-          date="2 weeks ago"
-          review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="/images/avatar.png"
-        />
-        <ReviewCard
-          reviewer="John Smith"
-          rating={4}
-          date="2 weeks ago"
-          review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="/images/avatar.png"
-        />
-        <ReviewCard
-          reviewer="John Smith"
-          rating={4}
-          date="2 weeks ago"
-          review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
-          profileImage="/images/avatar.png"
-        />
-      </div>
+      <FadeInSection>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center mb-20">
+          {/* Example reviews */}
+          <ReviewCard
+            reviewer="John Smith"
+            rating={4}
+            date="2 weeks ago"
+            review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
+            profileImage="/images/avatar.png"
+          />
+          <ReviewCard
+            reviewer="John Smith"
+            rating={4}
+            date="2 weeks ago"
+            review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
+            profileImage="/images/avatar.png"
+          />
+          <ReviewCard
+            reviewer="John Smith"
+            rating={4}
+            date="2 weeks ago"
+            review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
+            profileImage="/images/avatar.png"
+          />
+          <ReviewCard
+            reviewer="John Smith"
+            rating={4}
+            date="2 weeks ago"
+            review="Amazing food and atmosphere! The service was impeccable and everything we ordered was delicious. Will definitely be coming back!"
+            profileImage="/images/avatar.png"
+          />
+        </div>
+      </FadeInSection>
     </>
   );
 }
