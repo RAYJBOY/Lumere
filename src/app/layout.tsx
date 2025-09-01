@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { NavBar } from "@/components/layout/NavBar";
 import { loraDisplay } from "@/styles/fonts";
 import { NavBarLinks } from "@/constants/Navigation";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className={`${loraDisplay.className} text-[#3f3f3f]`}>
         <NavBar links={NavBarLinks} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
