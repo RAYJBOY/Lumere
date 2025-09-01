@@ -56,7 +56,7 @@ export const ReviewCard = ({
       </div>
 
       {/* Review Text */}
-      <p className="text-gray-700 text-base italic">"{review}"</p>
+      <p className="text-gray-700 text-base italic">{review}</p>
     </div>
   );
 };
