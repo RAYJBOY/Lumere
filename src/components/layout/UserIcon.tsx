@@ -1,6 +1,6 @@
 "use client";
 
-import { User, LogIn, LogOut } from "lucide-react";
+import { User, LogIn, UserRoundPlus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,6 +26,16 @@ export const UserIcon = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleSignIn = () => {
+    console.log("Sign In clicked");
+    setIsOpen(false);
+  };
+
+  const handleSignUp = () => {
+    console.log("Sign Up clicked");
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -42,33 +52,27 @@ export const UserIcon = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50"
+            className="absolute right-0 mt-2 w-30 bg-white rounded-lg shadow-lg py-2 z-50"
           >
             <motion.button
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              onClick={() => {
-                console.log("Sign In clicked");
-                setIsOpen(false);
-              }}
+              onClick={handleSignUp}
               className="w-full px-4 py-2 text-left hover:bg-[var(--hover-color)] hover:text-white text-gray-700 flex items-center gap-2"
             >
-              <LogIn className="w-4 h-4" />
-              Sign In
+              <UserRoundPlus className="w-4 h-4" />
+              Sign Up
             </motion.button>
             <motion.button
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              onClick={() => {
-                console.log("Sign Out clicked");
-                setIsOpen(false);
-              }}
+              onClick={handleSignIn}
               className="w-full px-4 py-2 text-left hover:bg-[var(--hover-color)] hover:text-white text-gray-700 flex items-center gap-2"
             >
-              <LogOut className="w-4 h-4" />
-              Sign Out
+              <LogIn className="w-4 h-4" />
+              Sign In
             </motion.button>
           </motion.div>
         )}
