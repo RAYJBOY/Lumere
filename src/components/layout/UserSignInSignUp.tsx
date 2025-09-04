@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -19,6 +19,59 @@ export function UserSignInSignUpDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const [showError, setShowError] = useState<string | null>(null);
+
+  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.currentTarget;
+    const email = (form.elements.namedItem("signin-email") as HTMLInputElement)
+      .value;
+    const password = (
+      form.elements.namedItem("signin-password") as HTMLInputElement
+    ).value;
+    console.log("Sign In with", { email, password });
+  };
+
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // prevent full page reload
+
+    const form = event.currentTarget;
+    const email = (form.elements.namedItem("signup-email") as HTMLInputElement).value;
+    const password = (form.elements.namedItem("signup-password") as HTMLInputElement).value;
+    const confirmPassword = (form.elements.namedItem("signup-confirm-password") as HTMLInputElement).value;
+
+    if (password !== confirmPassword) {
+      setShowError("Passwords do not match");
+      return;
+    }
+    if (password.length < 6) {
+      setShowError("Password must be at least 6 characters long");
+      return;
+    }
+
+    setShowError(null);
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setShowError(data.error || "Sign up failed");
+        return;
+      }
+
+      console.log("Signed up:", data.user);
+      // TODO: maybe redirect or auto-login user here
+    } catch (err) {
+      console.error("SignUp request failed", err);
+      setShowError("Something went wrong");
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -31,9 +84,11 @@ export function UserSignInSignUpDialog({
             <TabsTrigger value="sign-up">Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value="sign-in">
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSignIn}>
               <div>
-                <Label htmlFor="signin-email" className="mb-2">Email</Label>
+                <Label htmlFor="signin-email" className="mb-2">
+                  Email
+                </Label>
                 <Input
                   id="signin-email"
                   type="email"
@@ -42,7 +97,9 @@ export function UserSignInSignUpDialog({
                 />
               </div>
               <div>
-                <Label htmlFor="signin-password" className="mb-2">Password</Label>
+                <Label htmlFor="signin-password" className="mb-2">
+                  Password
+                </Label>
                 <Input
                   id="signin-password"
                   type="password"
@@ -51,7 +108,12 @@ export function UserSignInSignUpDialog({
                 />
               </div>
               <DialogFooter>
-                <Button type="submit" className="bg-[#A58958] hover:bg-[#A58958] hover:opacity-90">Sign In</Button>
+                <Button
+                  type="submit"
+                  className="bg-[#A58958] hover:bg-[#A58958] hover:opacity-90"
+                >
+                  Sign In
+                </Button>
                 <DialogClose asChild>
                   <Button variant="ghost" type="button">
                     Cancel
@@ -61,9 +123,11 @@ export function UserSignInSignUpDialog({
             </form>
           </TabsContent>
           <TabsContent value="sign-up">
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSignUp}>
               <div>
-                <Label htmlFor="signup-email" className="mb-2">Email</Label>
+                <Label htmlFor="signup-email" className="mb-2">
+                  Email
+                </Label>
                 <Input
                   id="signup-email"
                   type="email"
@@ -72,7 +136,9 @@ export function UserSignInSignUpDialog({
                 />
               </div>
               <div>
-                <Label htmlFor="signup-password" className="mb-2">Password</Label>
+                <Label htmlFor="signup-password" className="mb-2">
+                  Password
+                </Label>
                 <Input
                   id="signup-password"
                   type="password"
@@ -91,8 +157,14 @@ export function UserSignInSignUpDialog({
                   required
                 />
               </div>
+              {showError && <p className="text-sm text-red-600">{showError}</p>}
               <DialogFooter>
-                <Button type="submit" className="bg-[#A58958] hover:bg-[#A58958] hover:opacity-90">Sign Up</Button>
+                <Button
+                  type="submit"
+                  className="bg-[#A58958] hover:bg-[#A58958] hover:opacity-90"
+                >
+                  Sign Up
+                </Button>
                 <DialogClose asChild>
                   <Button variant="ghost" type="button">
                     Cancel
