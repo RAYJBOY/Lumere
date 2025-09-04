@@ -3,7 +3,7 @@ import "../styles/globals.css";
 import { NavBar } from "@/components/layout/NavBar";
 import { loraDisplay } from "@/styles/fonts";
 import { NavBarLinks } from "@/constants/Navigation";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
