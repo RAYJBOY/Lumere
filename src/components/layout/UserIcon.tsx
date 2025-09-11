@@ -7,12 +7,14 @@ import { UserSignInSignUpDialog } from "./UserSignInSignUp";
 import { UserSignOut } from "./UserSignOut";
 
 export const UserIcon = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [signedInUser, setSignedInUser] = useState(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const iconColor = pathname === "/" ? "white" : "black";
 
+  // Fetch signed-in user on mount
   useEffect(() => {
     const getSignedInUser = async () => {
       const res = await fetch("/api/me");
@@ -30,38 +32,50 @@ export const UserIcon = () => {
   // Close dropdown if click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      if (!isDropdownOpen) return;
+
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        setIsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isDropdownOpen]);
+
+  const handleIconClick = () => {
+    if (signedInUser) {
+      setIsDropdownOpen((prev) => !prev);
+    } else {
+      setIsDialogOpen(true); // open the sign-in/sign-up dialog
+    }
+  };
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         className={`p-2 hover:bg-[var(--hover-color)] rounded-lg`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleIconClick}
       >
         <User className={`text-${iconColor}`} />
       </button>
 
-      {isOpen && !signedInUser && (
+      {/* Sign In / Sign Up Dialog */}
+      {!signedInUser && (
         <UserSignInSignUpDialog
-          open={isOpen}
-          onOpenChange={(open) => setIsOpen(open)}
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
         />
       )}
 
-      {isOpen && signedInUser && (
+      {/* Dropdown for signed-in user */}
+      {isDropdownOpen && signedInUser && (
         <div className="absolute right-0 mt-2 inline-block rounded-lg shadow-lg z-50 top-10 w-25">
-          <UserSignOut onSignOut={() => setIsOpen(false)} />
+          <UserSignOut onSignOut={() => setIsDropdownOpen(false)} />
         </div>
       )}
     </div>

@@ -21,23 +21,46 @@ export function UserSignInSignUpDialog({
 }) {
   const [showError, setShowError] = useState<string | null>(null);
 
-  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget;
     const email = (form.elements.namedItem("signin-email") as HTMLInputElement)
       .value;
     const password = (
       form.elements.namedItem("signin-password") as HTMLInputElement
     ).value;
-    console.log("Sign In with", { email, password });
+    event.preventDefault(); // prevent full page reload
+    try {
+      const res = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setShowError(data.error || "Sign in failed");
+        return;
+      }
+      window.location.reload();
+    } catch (err) {
+      console.error("Sign In request failed", err);
+      setShowError("Something went wrong");
+    }
   };
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // prevent full page reload
 
     const form = event.currentTarget;
-    const email = (form.elements.namedItem("signup-email") as HTMLInputElement).value;
-    const password = (form.elements.namedItem("signup-password") as HTMLInputElement).value;
-    const confirmPassword = (form.elements.namedItem("signup-confirm-password") as HTMLInputElement).value;
+    const email = (form.elements.namedItem("signup-email") as HTMLInputElement)
+      .value;
+    const password = (
+      form.elements.namedItem("signup-password") as HTMLInputElement
+    ).value;
+    const confirmPassword = (
+      form.elements.namedItem("signup-confirm-password") as HTMLInputElement
+    ).value;
 
     if (password !== confirmPassword) {
       setShowError("Passwords do not match");

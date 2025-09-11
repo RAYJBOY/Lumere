@@ -36,6 +36,7 @@ export const UserSignOut = ({ onSignOut }: UserSignOutDialogProps) => {
       } else {
         console.error("Failed to log out");
       }
+      window.location.reload();
     } catch (err) {
       console.error(err);
     } finally {
