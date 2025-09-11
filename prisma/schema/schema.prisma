@@ -30,3 +30,11 @@ model Session {
   createdAt DateTime @default(now())
   expiresAt DateTime
 }
+
+model Menu {
+  id          Int    @id @default(autoincrement())
+  name        String
+  category    String
+  description String @db.Text
+  price       Float
+}
