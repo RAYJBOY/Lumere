@@ -35,6 +35,6 @@ model Menu {
   id          Int    @id @default(autoincrement())
   name        String
   category    String
-  description String @db.Text
+  description String? @db.Text
   price       Float
 }
