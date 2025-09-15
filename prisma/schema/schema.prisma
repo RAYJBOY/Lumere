@@ -23,7 +23,7 @@ model User {
 }
 
 model Session {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   token     String   @unique
@@ -32,9 +32,11 @@ model Session {
 }
 
 model Menu {
-  id          Int    @id @default(autoincrement())
+  id          String  @id @default(uuid())
   name        String
   category    String
   description String? @db.Text
   price       Float
+  imageUrl    String? @db.Text
+  isSpecial   Boolean @default(false)
 }
