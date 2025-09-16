@@ -12,10 +12,25 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log("Form submitted:", formData);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Form error:", error);
+      alert("Something went wrong. Try again later.");
+    }
   };
 
   return (
@@ -54,9 +69,9 @@ export default function ContactPage() {
             <div className="mt-8">
               <h3 className="text-xl font-semibold mb-4">Opening Hours</h3>
               <div className="space-y-2 text-gray-600">
-                <p>Monday - Friday: 11:00 AM - 10:00 PM</p>
-                <p>Saturday: 10:00 AM - 11:00 PM</p>
-                <p>Sunday: 10:00 AM - 9:00 PM</p>
+                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                <p>Saturday: 9:00 AM - 7:00 PM</p>
+                <p>Sunday: 11:00 AM - 5:00 PM</p>
               </div>
             </div>
           </FadeInSection>
