@@ -7,13 +7,15 @@ const MENU_ITEMS = [
     description:
       "Freshly seasoned sausages wrapped with turkey rashers, scrambled eggs, toast, hashbrowns, mushrooms and tomatoes with a side of beans.",
     price: 13.95,
+    imageUrl: "/images/fullEnglishBreakfast.png",
   },
   {
     name: "Avacado Toast Deluxe",
     category: "Breakfast",
     description:
-      "Smashed avacado on sourdough bread with eggs, cherry tomatoes with a sprinkle of chilli flakes to top it off.",
+      "Smashed avocado on sourdough bread with eggs, cherry tomatoes with a sprinkle of chilli flakes to top it off.",
     price: 9.49,
+    imageUrl: "/images/avocadoToast.png",
   },
   {
     name: "Desi Breakfast",
@@ -21,6 +23,7 @@ const MENU_ITEMS = [
     description:
       "Fully loaded masala omelette with two crispy parathas and a side of freshly made chana.",
     price: 10.49,
+    imageUrl: "/images/desiBreakfast.png",
   },
   {
     name: "Vegetarian Breakfast",
@@ -28,6 +31,7 @@ const MENU_ITEMS = [
     description:
       "Vegetarian sausages, falafel, hasbrowns, toast, tomatoes, and mushrooms with a side of beans.",
     price: 12.95,
+    imageUrl: "/images/vegetarianBreakfast.png",
   },
   {
     name: "The Brunch Combo",
@@ -35,6 +39,7 @@ const MENU_ITEMS = [
     description:
       "A blend of mixed berries loaded onto French toast, accompanied by rich maple syrup and beans, coupled with crispy hashbrowns, freshly seasoned sausages, turkey rashers, scrambled eggs, and tomatoes served on a bed of mushrooms.",
     price: 15.95,
+    imageUrl: "/images/brunchCombo.png",
   },
   {
     name: "Club Croissant",
@@ -42,6 +47,7 @@ const MENU_ITEMS = [
     description:
       "Grilled fluffy croissant pocketed with sliced chicken, smoked turkey, and layered with smashed avocado, cheese, and a fried egg.",
     price: 11.95,
+    imageUrl: "/images/clubCroissant.png",
   },
   {
     name: "Chicken Sandwich",
@@ -49,6 +55,7 @@ const MENU_ITEMS = [
     description:
       "Cripsy fried chicken topped with lettuce, our signature house special sauce, and cheeses layered in toasted brioche bread, with fries.",
     price: 11.95,
+    imageUrl: "/images/chickenSandwich.png",
   },
   {
     name: "Egg Muffin",
@@ -56,6 +63,7 @@ const MENU_ITEMS = [
     description:
       "Fried egg and a slice of cheese pocketed into an English muffin.",
     price: 3.95,
+    imageUrl: "/images/eggMuffin.png",
   },
   {
     name: "Chicken Wrap",
@@ -63,12 +71,14 @@ const MENU_ITEMS = [
     description:
       "Crispy chicken, salad, and cheeses wrapped in a tortilla wrap topped with house special sauce, with fries.",
     price: 9.49,
+    imageUrl: "/images/chickenWrap.png",
   },
   {
     name: "Omellete Roll",
     category: "Lunch",
     description: "Loaded omelette wrapped in a crispy paratha.",
     price: 5.49,
+    imageUrl: "/images/omeletteRoll.png",
   },
   {
     name: "Kebab Roll",
@@ -76,18 +86,21 @@ const MENU_ITEMS = [
     description:
       "Chicken seekh kebab wrapped in a crispy paratha, topped with house special chutney.",
     price: 5.49,
+    imageUrl: "/images/kebabRoll.png",
   },
   {
     name: "Pesto Cheese & Tomato Toastie",
     category: "Lunch",
     description: "Pesto, tomatoes, and melted cheese toasted sandwich.",
     price: 5.95,
+    imageUrl: "/images/pestoCheeseTomatoToastie.png",
   },
   {
     name: "Masala Fries",
     category: "Lunch",
     description: "Lumeré special masala fries.",
     price: 5.5,
+    imageUrl: "/images/masalaFries.png",
   },
   {
     name: "Veggie Burger",
@@ -95,6 +108,7 @@ const MENU_ITEMS = [
     description:
       "A veggie patty topped with lettuce and cheese, all nestled in a toasted bun, served alongside crispy fries.",
     price: 8.95,
+    imageUrl: "/images/veggieBurger.png",
   },
   {
     name: "Cheeseburger",
@@ -102,12 +116,14 @@ const MENU_ITEMS = [
     description:
       "Fresh lamb pattie topped with cheese, lettuce and mayonnaise in a grilled bun, with a side of fries.",
     price: 9.49,
+    imageUrl: "/images/cheeseburger.png",
   },
   {
     name: "Strips With Fries",
     category: "Lunch",
     description: "3 fried chicken strips topped onto a bed of seasoned chips.",
     price: 6,
+    imageUrl: "/images/stripsWithFries.png",
   },
   {
     name: "Chicken Salad",
@@ -115,6 +131,7 @@ const MENU_ITEMS = [
     description:
       "Fresh salad topped with chopped fried chicken and house special creamy sauce, garnished with parsley.",
     price: 9.49,
+    imageUrl: "/images/chickenSalad.png",
   },
   {
     name: "Loaded Fries",
@@ -122,6 +139,7 @@ const MENU_ITEMS = [
     description:
       "Seasoned fries loaded with chopped crispy chicken, onions, peppers, and jalapenos, all smothered in melted cheese and our signature sauce.",
     price: 10.49,
+    imageUrl: "/images/loadedFries.png",
   },
   {
     name: "Loaded Pancake",
@@ -129,6 +147,7 @@ const MENU_ITEMS = [
     description:
       "Indulge in a chocolate-filled, self-lifting tin atop three fluffy, stacked pancakes, all crowned with a delightful fountain of your favourite flavour.",
     price: 11.95,
+    imageUrl: "/images/loadedPancake.png",
   },
   {
     name: "Waffle",
@@ -136,6 +155,7 @@ const MENU_ITEMS = [
     description:
       "Freshly made American waffle, with a center scoop of ice cream loaded with a flavour of your choice.",
     price: 11.49,
+    imageUrl: "/images/waffle.png",
   },
   {
     name: "French Toast",
@@ -143,6 +163,7 @@ const MENU_ITEMS = [
     description:
       "Toasted brioche bread, elegantly drizzled with delicious flavour.",
     price: 11.95,
+    imageUrl: "/images/frenchToast.png",
   },
   {
     name: "Crispy French Roll",
@@ -150,18 +171,21 @@ const MENU_ITEMS = [
     description:
       "House special savory-rolled brioche bread stuffed with Nutella, drizzled with flavour.",
     price: 8.95,
+    imageUrl: "/images/crispyFrenchRoll.png",
   },
   {
     name: "Loaded Croissant",
     category: "Dessert",
     description: "Fresh croissant stuffed with your favourite flavour.",
     price: 8.95,
+    imageUrl: "/images/loadedCroissant.png",
   },
   {
     name: "Milk Cake",
     category: "Dessert",
     description: "Rose vanilla milk cake, surrounded with rich, creamy milk.",
     price: 9.49,
+    imageUrl: "/images/milkCake.png",
   },
   {
     name: "Chocolate Fudge Cake",
@@ -169,6 +193,7 @@ const MENU_ITEMS = [
     description:
       "Chocolate layered fudge cake with a ganache filling, drizzled with the flavour of your choice and a side scoop of ice cream.",
     price: 9.49,
+    imageUrl: "/images/chocolateFudgeCake.png",
   },
   {
     name: "Iced Coffee",
@@ -516,6 +541,7 @@ const MENU_ITEMS = [
     name: "Hazelnut/Caramel/ Vanilla/Salted Caramel/ Pistachio Syrup",
     category: "Extras",
     price: 0.4,
+    imageUrl: "/images/sauceDip.png",
   },
   {
     name: "Coffee x Flower Bag",

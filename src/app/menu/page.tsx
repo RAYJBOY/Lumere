@@ -5,16 +5,26 @@ import { getMenuItems } from "@/lib/menu/getMenuItems";
 
 export default async function MenuPage() {
   const menuItems = await getMenuItems();
-  const breakfastItems = menuItems.filter((item) => item.category === "Breakfast");
+  const breakfastItems = menuItems.filter(
+    (item) => item.category === "Breakfast"
+  );
   const drinkItems = menuItems.filter((item) => item.category === "Drinks");
   const dessertItems = menuItems.filter((item) => item.category === "Dessert");
   const lunchItems = menuItems.filter((item) => item.category === "Lunch");
-  const lumereSpecialItems = menuItems.filter((item) => item.category === "Lumere Special");
-  const coldBeverageItems = menuItems.filter((item) => item.category === "Cold Beverages");
-  const hotBeverageItems = menuItems.filter((item) => item.category === "Hot Beverages");
+  const lumereSpecialItems = menuItems.filter(
+    (item) => item.category === "Lumere Special"
+  );
+  const coldBeverageItems = menuItems.filter(
+    (item) => item.category === "Cold Beverages"
+  );
+  const hotBeverageItems = menuItems.filter(
+    (item) => item.category === "Hot Beverages"
+  );
   const extraItems = menuItems.filter((item) => item.category === "Extras");
-  const lumereFloralItems = menuItems.filter((item) => item.category === "Lumere Floral Specials");
-  
+  const lumereFloralItems = menuItems.filter(
+    (item) => item.category === "Lumere Floral Specials"
+  );
+
   return (
     <div className="pt-20 px-2 max-w-8xl w-full overflow-x-hidden">
       <h2 className="text-4xl font-semibold text-center col-span-1 md:col-span-3 mb-8">
@@ -22,17 +32,24 @@ export default async function MenuPage() {
       </h2>
       <ChipStrip
         categories={[
-          { name: "Mains", href: "#mains" },
-          { name: "Drinks", href: "#drinks" },
+          { name: "Breakfast", href: "#breakfast" },
+          { name: "Lunch", href: "#lunch" },
+          { name: "Hot Beverages", href: "#hotBeverages" },
+          { name: "Cold Beverages", href: "#coldBeverages" },
           { name: "Desserts", href: "#desserts" },
-          { name: "Sides", href: "#sides" },
+          { name: "Drinks", href: "#drinks" },
+          { name: "Extras", href: "#extras" },
+          { name: "Lumere Specials", href: "#lumereSpecials" },
+          { name: "Lumere Floral Specials", href: "#lumereFloralSpecials" },
         ]}
       />
 
       {/* Breakfast items */}
       <FadeInSection>
-        <div className="mb-20" id="mains">
-          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Breakfast</h3>
+        <div className="mb-20" id="breakfast">
+          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">
+            Breakfast
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {breakfastItems.map((item, index) => (
               <MenuCard
@@ -43,7 +60,7 @@ export default async function MenuPage() {
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={'/images/lunch.png'}
+                image={item.imageUrl || "/images/lunch.png"}
               />
             ))}
           </div>
@@ -52,19 +69,19 @@ export default async function MenuPage() {
 
       {/* Lunch items */}
       <FadeInSection>
-        <div className="mb-20" id="drinks">
+        <div className="mb-20" id="lunch">
           <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Lunch</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {lunchItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={'/images/lunch.png'}
+                image={item.imageUrl || "/images/lunch.png"}
               />
             ))}
           </div>
@@ -73,7 +90,7 @@ export default async function MenuPage() {
 
       {/* Hot Beverages */}
       <FadeInSection>
-        <div className="mb-20" id="desserts">
+        <div className="mb-20" id="hotBeverages">
           <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">
             Hot Beverages
           </h3>
@@ -82,12 +99,12 @@ export default async function MenuPage() {
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/drink.png'}
+                image={item.imageUrl || "/images/drink.png"}
               />
             ))}
           </div>
@@ -96,19 +113,21 @@ export default async function MenuPage() {
 
       {/* Cold Beverages items */}
       <FadeInSection>
-        <div className="mb-20" id="sides">
-          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Cold Beverages</h3>
+        <div className="mb-20" id="coldBeverages">
+          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">
+            Cold Beverages
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {coldBeverageItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/drink.png'}
+                image={item.imageUrl || "/images/drink.png"}
               />
             ))}
           </div>
@@ -117,19 +136,21 @@ export default async function MenuPage() {
 
       {/* Dessert Items */}
       <FadeInSection>
-        <div className="mb-20" id="sides">
-          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Desserts</h3>
+        <div className="mb-20" id="desserts">
+          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">
+            Desserts
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {dessertItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/desserts.png'}
+                image={item.imageUrl || "/images/desserts.png"}
               />
             ))}
           </div>
@@ -138,19 +159,19 @@ export default async function MenuPage() {
 
       {/* Drink items */}
       <FadeInSection>
-        <div className="mb-20" id="sides">
+        <div className="mb-20" id="drinks">
           <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Drinks</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {drinkItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/drink.png'}
+                image={item.imageUrl || "/images/drink.png"}
               />
             ))}
           </div>
@@ -159,19 +180,19 @@ export default async function MenuPage() {
 
       {/* Extra items */}
       <FadeInSection>
-        <div className="mb-20" id="sides">
+        <div className="mb-20" id="extras">
           <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Extras</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {extraItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/drink.png'}
+                image={item.imageUrl || "/images/drink.png"}
               />
             ))}
           </div>
@@ -180,19 +201,21 @@ export default async function MenuPage() {
 
       {/* Lumere Special items */}
       <FadeInSection>
-        <div className="mb-20" id="sides">
-          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Lumere Specials</h3>
+        <div className="mb-20" id="lumereSpecials">
+          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">
+            Lumere Specials
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {lumereSpecialItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/drink.png'}
+                image={item.imageUrl || "/images/drink.png"}
               />
             ))}
           </div>
@@ -201,19 +224,21 @@ export default async function MenuPage() {
 
       {/* Lumere Floral Special items */}
       <FadeInSection>
-        <div className="mb-20" id="sides">
-          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">Lumere Floral Specials</h3>
+        <div className="mb-20" id="lumereFloralSpecials">
+          <h3 className="text-2xl font-semibold mb-6 md:ml-8 w-full">
+            Lumere Floral Specials
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-y-12 w-full justify-items-center">
             {lumereFloralItems.map((item, index) => (
               <MenuCard
                 key={index}
                 name={item.name}
-                description={item.description || ''}
+                description={item.description || ""}
                 price={item.price}
                 category={
                   item.category as "drinks" | "mains" | "desserts" | "sides"
                 }
-                image={item.imageUrl || '/images/drink.png'}
+                image={item.imageUrl || "/images/drink.png"}
               />
             ))}
           </div>
