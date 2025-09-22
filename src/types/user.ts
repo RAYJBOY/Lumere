@@ -3,11 +3,10 @@ enum Role {
   ADMIN = "ADMIN",
 }
 
-export const User = {
-  id: "string",
-  email: "string",
-  password: "string",
-  role: Role,
-  createdAt: "Date",
-  updatedAt: "Date",
-};
+export type User = {
+    id: string;
+    role: Role;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

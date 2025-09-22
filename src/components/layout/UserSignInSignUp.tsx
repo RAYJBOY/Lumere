@@ -11,6 +11,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { ForgotPasswordDialog } from "./ForgotPasswordDialog";
 
 export function UserSignInSignUpDialog({
   open,
@@ -20,6 +22,7 @@ export function UserSignInSignUpDialog({
   onOpenChange: (open: boolean) => void;
 }) {
   const [showError, setShowError] = useState<string | null>(null);
+  const [forgotOpen, setForgotOpen] = useState(false);
 
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget;
@@ -130,6 +133,15 @@ export function UserSignInSignUpDialog({
                   required
                 />
               </div>
+              <div className="text-sm">
+                <button
+                  type="button"
+                  onClick={() => setForgotOpen(true)}
+                  className="text-[#A58958] hover:underline"
+                >
+                  Forgot my password
+                </button>
+              </div>
               <DialogFooter>
                 <Button
                   type="submit"
@@ -198,6 +210,7 @@ export function UserSignInSignUpDialog({
           </TabsContent>
         </Tabs>
       </DialogContent>
+      <ForgotPasswordDialog open={forgotOpen} onOpenChange={setForgotOpen} />
     </Dialog>
   );
 }

@@ -1,33 +1,22 @@
 "use client";
 
-import { User } from "lucide-react";
+import { User as LucideUserIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { UserSignInSignUpDialog } from "./UserSignInSignUp";
 import { UserSignOut } from "./UserSignOut";
+import { User } from "@/types/user";
 
-export const UserIcon = () => {
+interface UserIconProps {
+  signedInUser: User | null;
+}
+
+export const UserIcon = ({ signedInUser }: UserIconProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [signedInUser, setSignedInUser] = useState(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const iconColor = pathname === "/" ? "white" : "black";
-
-  // Fetch signed-in user on mount
-  useEffect(() => {
-    const getSignedInUser = async () => {
-      const res = await fetch("/api/me");
-      if (res.ok) {
-        const data = await res.json();
-        return data.user;
-      }
-      return null;
-    };
-    getSignedInUser().then((user) => {
-      if (user) setSignedInUser(user);
-    });
-  }, []);
 
   // Close dropdown if click outside
   useEffect(() => {
@@ -61,7 +50,7 @@ export const UserIcon = () => {
         className={`p-2 hover:bg-[var(--hover-color)] rounded-lg`}
         onClick={handleIconClick}
       >
-        <User className={`text-${iconColor}`} />
+        <LucideUserIcon className={`text-${iconColor}`} />
       </button>
 
       {/* Sign In / Sign Up Dialog */}

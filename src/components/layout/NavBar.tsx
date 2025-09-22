@@ -5,8 +5,10 @@ import { HamburgerIcon } from "./HamburgerIcon";
 import { UserIcon } from "./UserIcon";
 import { plusJakartaDisplay } from "@/styles/fonts";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SideBar } from "./SideBar";
+import { User } from "@/types/user";
+import { Role } from "@prisma/client";
 
 interface NavBarProps {
   links: { name: string; href: string }[];
@@ -14,7 +16,21 @@ interface NavBarProps {
 
 export const NavBar = ({ links }: NavBarProps) => {
   const [openSideBar, setOpenSideBar] = useState(false);
+  const [signedInUser, setSignedInUser] = useState<User | null>(null);
+
   const pathname = usePathname();
+
+  // Fetch signed-in user on mount
+  useEffect(() => {
+    const getSignedInUser = async () => {
+      const res = await fetch("/api/me");
+      if (res.ok) {
+        const data = await res.json();
+        setSignedInUser(data.user);
+      }
+    };
+    getSignedInUser();
+  }, []);
 
   return (
     <>
@@ -37,21 +53,39 @@ export const NavBar = ({ links }: NavBarProps) => {
 
           {/* Center: Navigation Links */}
           <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex gap-6">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`hover:bg-[var(--hover-color)] hover:text-white p-2 rounded ${
-                  pathname === "/" ? "text-white" : "text-[#3f3f3f]"
-                } ${plusJakartaDisplay.className}`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {links.map((link) => {
+              if (link.name === "Admin") {
+                if (signedInUser?.role === Role.ADMIN) {
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className={`hover:bg-[var(--hover-color)] hover:text-white p-2 rounded ${
+                        pathname === "/" ? "text-white" : "text-[#3f3f3f]"
+                      } ${plusJakartaDisplay.className}`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                }
+                return null;
+              }
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`hover:bg-[var(--hover-color)] hover:text-white p-2 rounded ${
+                    pathname === "/" ? "text-white" : "text-[#3f3f3f]"
+                  } ${plusJakartaDisplay.className}`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right: User Icon */}
-          <UserIcon />
+          <UserIcon signedInUser={signedInUser} />
         </div>
       </nav>
       <SideBar setOpenSidebar={setOpenSideBar} isOpen={openSideBar} />

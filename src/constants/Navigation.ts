@@ -3,4 +3,5 @@ export const NavBarLinks = [
   { name: "Menu", href: "/menu" },
   { name: "Reviews", href: "/reviews" },
   { name: "Contact", href: "/contact" },
+  { name: "Admin", href: "/admin" },
 ];

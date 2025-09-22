@@ -20,6 +20,7 @@ model User {
   sessions  Session[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  resetTokens PasswordResetToken[]
 }
 
 model Session {
@@ -39,4 +40,16 @@ model Menu {
   price       Float
   imageUrl    String? @db.Text
   isSpecial   Boolean @default(false)
+}
+
+model PasswordResetToken {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([tokenHash])
 }

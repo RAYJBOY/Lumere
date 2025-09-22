@@ -7,22 +7,22 @@ import { FadeInSection } from "@/components/shared/FadeInSection";
 
 const spotlightItems = [
   {
-    title: "Test item",
+    title: "The Brunch Combo",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageUrl: "/images/drink.png",
+      "A blend of mixed berries loaded onto French toast, accompanied by rich maple syrup and beans, coupled with crispy hashbrowns, freshly seasoned sausages, turkey rashers, scrambled eggs, and tomatoes served on a bed of mushrooms.",
+    imageUrl: "/images/brunchCombo.png",
   },
   {
-    title: "Test item",
+    title: "Chicken Sandwich",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageUrl: "/images/drink.png",
+      "Cripsy fried chicken topped with lettuce, our signature house special sauce, and cheeses layered in toasted brioche bread, with fries.",
+    imageUrl: "/images/chickenSandwich.png",
   },
   {
-    title: "Test item",
+    title: "Desi Breakfast",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    imageUrl: "/images/drink.png",
+      "Fully loaded masala omelette with two crispy parathas and a side of freshly made chana.",
+    imageUrl: "/images/desiBreakfast.png",
   },
 ];
 
