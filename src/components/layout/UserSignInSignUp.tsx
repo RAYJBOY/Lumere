@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from "react";
 import {
   Dialog,
@@ -11,7 +12,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
 import { ForgotPasswordDialog } from "./ForgotPasswordDialog";
 
 export function UserSignInSignUpDialog({
@@ -23,6 +23,8 @@ export function UserSignInSignUpDialog({
 }) {
   const [showError, setShowError] = useState<string | null>(null);
   const [forgotOpen, setForgotOpen] = useState(false);
+  const [tab, setTab] = useState("sign-in");
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget;
@@ -41,7 +43,7 @@ export function UserSignInSignUpDialog({
 
       const data = await res.json();
 
-      if (!res.ok) {
+      if (!res.ok || data.error) {
         setShowError(data.error || "Sign in failed");
         return;
       }
@@ -89,9 +91,9 @@ export function UserSignInSignUpDialog({
         setShowError(data.error || "Sign up failed");
         return;
       }
-
-      console.log("Signed up:", data.user);
-      // TODO: maybe redirect or auto-login user here
+      setTab("sign-in"); // switch user to sign-in tab
+      setShowError(null);
+      setSuccessMessage("Account created successfully! Please sign in.");
     } catch (err) {
       console.error("SignUp request failed", err);
       setShowError("Something went wrong");
@@ -104,7 +106,7 @@ export function UserSignInSignUpDialog({
         <DialogHeader>
           <DialogTitle>User Authentication</DialogTitle>
         </DialogHeader>
-        <Tabs defaultValue="sign-in" className="w-full">
+        <Tabs value={tab} onValueChange={setTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-4">
             <TabsTrigger value="sign-in">Sign In</TabsTrigger>
             <TabsTrigger value="sign-up">Sign Up</TabsTrigger>
@@ -142,6 +144,8 @@ export function UserSignInSignUpDialog({
                   Forgot my password
                 </button>
               </div>
+              {showError && <p className="text-sm text-red-600">{showError}</p>}
+              {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
               <DialogFooter>
                 <Button
                   type="submit"
