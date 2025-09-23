@@ -2,9 +2,10 @@
 
 import { MenuItemCategory } from "@/types/menu";
 import { useState } from "react";
+import { MenuItem } from "./page";
 
 interface AddMenuItemFormProps {
-  setMenuItems: React.Dispatch<React.SetStateAction<any[]>>;
+  setMenuItems: React.Dispatch<React.SetStateAction<MenuItem[]>>
 }
 
 export default function AddMenuItemForm({

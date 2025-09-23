@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import MenuItemRow from "./MenuItemRow";
 import AddMenuItemForm from "./AddMenuItemForm";
 
-interface MenuItem {
+export interface MenuItem {
   id: number;
   name: string;
   price: number;
