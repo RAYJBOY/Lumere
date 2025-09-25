@@ -5,32 +5,25 @@ import { BlurText } from "@/components/layout/BlurText";
 import { plusJakartaDisplay } from "@/styles/fonts";
 import { FadeInSection } from "@/components/shared/FadeInSection";
 
-const spotlightItems = [
-  {
-    title: "The Brunch Combo",
-    description:
-      "A blend of mixed berries loaded onto French toast, accompanied by rich maple syrup and beans, coupled with crispy hashbrowns, freshly seasoned sausages, turkey rashers, scrambled eggs, and tomatoes served on a bed of mushrooms.",
-    imageUrl: "/images/brunchCombo.png",
-  },
-  {
-    title: "Chicken Sandwich",
-    description:
-      "Cripsy fried chicken topped with lettuce, our signature house special sauce, and cheeses layered in toasted brioche bread, with fries.",
-    imageUrl: "/images/chickenSandwich.png",
-  },
-  {
-    title: "Desi Breakfast",
-    description:
-      "Fully loaded masala omelette with two crispy parathas and a side of freshly made chana.",
-    imageUrl: "/images/desiBreakfast.png",
-  },
-];
+async function getSpecialItems() {
+  const res = await fetch(
+    `${process.env.PUBLIC_APP_URL}/api/menu/special`,
+    {
+      cache: "no-store", // always fetch fresh data
+    }
+  );
 
-export default function Home() {
+  if (!res.ok) throw new Error("Failed to fetch specials");
+  return res.json();
+}
+
+export default async function Home() {
+  const spotlightItems = await getSpecialItems();
+
   return (
     <>
+      {/* Hero section */}
       <div className="relative w-full h-[500px]">
-        {/* Background Image */}
         <Image
           src="/images/hero.jpg"
           alt="Hero Image"
@@ -38,10 +31,7 @@ export default function Home() {
           className="object-cover"
           priority
         />
-
         <div className="absolute inset-0 bg-black/60"></div>
-
-        {/* Hero content */}
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-white">
           <h1 className="text-5xl font-bold text-center leading-[1.25]">
             <BlurText text="WELCOME TO LUMERÉ" delay={50} />
@@ -70,12 +60,9 @@ export default function Home() {
         </h2>
       </FadeInSection>
 
-      {spotlightItems.map((item, index) => (
-        <FadeInSection key={index}>
-          <div
-            key={index}
-            className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto my-8 items-center"
-          >
+      {spotlightItems.map((item: any, index: number) => (
+        <FadeInSection key={item.id}>
+          <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto my-8 items-center">
             {/* Image */}
             <div
               className={
@@ -86,7 +73,7 @@ export default function Home() {
             >
               <Image
                 src={item.imageUrl}
-                alt={item.title}
+                alt={item.name}
                 width={400}
                 height={300}
                 className="rounded-xl"
@@ -100,7 +87,7 @@ export default function Home() {
                   : "p-8 order-2 md:order-1"
               }
             >
-              <h3 className="text-3xl font-medium mb-4">{item.title}</h3>
+              <h3 className="text-3xl font-medium mb-4">{item.name}</h3>
               <p
                 className={`text-xl font-normal ${plusJakartaDisplay.className}`}
               >

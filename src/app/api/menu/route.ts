@@ -73,3 +73,29 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+// DELETE a menu item
+export async function DELETE(req: NextRequest) {
+  try {
+    const { id } = await req.json();
+
+    if (!id) {
+      return NextResponse.json(
+        { error: "Missing menu item ID" },
+        { status: 400 }
+      );
+    }
+
+    await prisma.menu.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ message: "Menu item deleted" }, { status: 200 });
+  } catch (error) {
+    console.error("Failed to delete menu item:", error);
+    return NextResponse.json(
+      { error: "Failed to delete menu item" },
+      { status: 500 }
+    );
+  }
+}
