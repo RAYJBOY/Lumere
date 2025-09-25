@@ -4,6 +4,7 @@ import { LandingPageCards } from "@/components/layout/LandingPageCards";
 import { BlurText } from "@/components/layout/BlurText";
 import { plusJakartaDisplay } from "@/styles/fonts";
 import { FadeInSection } from "@/components/shared/FadeInSection";
+import { MenuItem } from "./admin/page";
 
 async function getSpecialItems() {
   const res = await fetch(
@@ -14,7 +15,7 @@ async function getSpecialItems() {
   );
 
   if (!res.ok) throw new Error("Failed to fetch specials");
-  return res.json();
+  return res.json() as Promise<MenuItem[]>;
 }
 
 export default async function Home() {
@@ -60,7 +61,7 @@ export default async function Home() {
         </h2>
       </FadeInSection>
 
-      {spotlightItems.map((item: any, index: number) => (
+      {spotlightItems.map((item: MenuItem, index: number) => (
         <FadeInSection key={item.id}>
           <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto my-8 items-center">
             {/* Image */}
@@ -72,7 +73,7 @@ export default async function Home() {
               }
             >
               <Image
-                src={item.imageUrl}
+                src={item.imageUrl as string}
                 alt={item.name}
                 width={400}
                 height={300}

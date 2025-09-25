@@ -38,7 +38,7 @@ export default function AdminDashboard() {
   }, [menuItems, draftMenuItems]);
 
   const handleSaveChanges = async () => {
-    const changes: Promise<any>[] = [];
+    const changes: Promise<Response>[] = [];
 
     // Handle updates
     draftMenuItems.forEach((draft, idx) => {
