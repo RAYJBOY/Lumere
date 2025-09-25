@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { ResetPasswordDialog } from "@/components/layout/ResetPasswordDialog";
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token"); // get token from URL
 
@@ -18,13 +18,19 @@ export default function ResetPasswordPage() {
 
   return (
     <div className="relative min-h-screen bg-black">
-      {/* Optionally, show some fallback content */}
       {!token && (
         <p className="text-center mt-20">Invalid or missing reset link.</p>
       )}
 
-      {/* Reset password modal */}
       <ResetPasswordDialog open={open} onOpenChange={setOpen} token={token} />
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }
